@@ -1,0 +1,30 @@
+$first-color: red;
+$second-color: blue;
+$third-color: green;
+
+
+div {
+    border: 1px solid $first-color;
+    h1 {
+        color: $third-color;
+        text-decoration: underline 2px solid $second-color;
+        text-align: center;
+    }
+    section {
+        display: flex;
+        padding: 0 20px;
+        article {
+            border: 1px solid $third-color;
+            margin: 20px 0;
+            text-align: center;
+            padding: 20px;
+            &:nth-child(even) p {
+                color: $first-color
+            }
+            &:nth-child(odd) p {
+                color: $second-color;
+
+            }
+        }
+    }
+}
