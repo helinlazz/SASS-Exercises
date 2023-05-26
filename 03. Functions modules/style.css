@@ -15,14 +15,14 @@ div section:nth-child(2) {
 }
 div section:nth-child(2) article:nth-child(odd) {
   color: blue;
-  border: 0.0625rem solid green green;
+  border: 0.0625rem solid green;
   font-size: 1rem;
   padding: 0rem 1.25rem;
   text-align: center;
 }
 div section:nth-child(2) article:nth-child(even) {
   color: red;
-  border: 0.0625rem solid green green;
+  border: 0.0625rem solid green;
   font-size: 1rem;
   padding: 0rem 1.25rem;
   text-align: center;
@@ -30,6 +30,6 @@ div section:nth-child(2) article:nth-child(even) {
 div section:last-child article {
   text-align: center;
   color: green;
-  border: 0.0625rem solid green blue;
+  border: 0.0625rem solid green;
   font-size: 1.5rem;
 }/*# sourceMappingURL=style.css.map */

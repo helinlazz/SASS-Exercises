@@ -9,7 +9,7 @@ $third-color: green;
 
 @mixin article-card($color, $border-color, $font-size) {
     color: $color;
-    border: f.rem(1) solid $third-color $border-color;
+    border: f.rem(1) solid $third-color;
     font-size: $font-size;
 }
 
