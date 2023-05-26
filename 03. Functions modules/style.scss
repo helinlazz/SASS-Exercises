@@ -1,0 +1,51 @@
+
+$first-color: red;
+$second-color: blue;
+$third-color: green;
+
+@use "./variable-module.scss" as v;
+@use "./function-module.scss" as f;
+
+
+@mixin article-card($color, $border-color, $font-size) {
+    color: $color;
+    border: f.rem(1) solid $border-color;
+    font-size: $font-size;
+}
+
+div {
+    border: f.rem(1) solid $first-color;
+
+    h1 {
+        color: $third-color;
+        text-align: center;
+        text-decoration: underline f.rem(2) solid $second-color;
+    }
+
+    section {
+        margin: f.rem(v.$section-margin);
+
+        &:nth-child(2) {
+            display: flex;
+
+            article:nth-child(odd) {
+                @include article-card($second-color, $third-color, f.rem(16));
+                padding: f.rem(v.$article-padding-top-bottom) f.rem(v.$article-padding-left-right);
+                text-align: center;
+            }
+
+            article:nth-child(even) {
+                @include article-card($first-color, $third-color, f.rem(16));
+                padding: f.rem(v.$article-padding-top-bottom) f.rem(v.$article-padding-left-right);
+                text-align: center;
+            }
+        }
+
+        &:last-child {
+            article {
+                text-align: center;
+                @include article-card($third-color, $second-color, f.rem(24));
+            }
+        }
+    }
+}
