@@ -1,0 +1,107 @@
+$first-color: red;
+$second-color: blue;
+$third-color: green;
+
+@use "sass:color";
+@use "./variable-module.scss" as v;
+@use "./function-module.scss" as f;
+
+
+@mixin article-card($color, $border-color, $font-size) {
+  color: $color;
+  border: f.rem(1) solid $border-color;
+  font-size: $font-size;
+}
+
+div {
+  border: f.rem(1) solid $first-color;
+
+  h1 {
+    color: $third-color;
+    text-align: center;
+    text-decoration: underline f.rem(2) solid $second-color;
+  }
+
+  h2 {
+    @extend h1;
+    padding: f.rem(16);
+    border: f.rem(1) solid $first-color;
+  }
+
+  section {
+    margin: f.rem(v.$section-margin);
+
+    &:nth-child(3) {
+      display: flex;
+
+      article:nth-child(odd) {
+        @include article-card($second-color, $third-color, f.rem(16));
+        padding: f.rem(v.$article-padding-top-bottom) f.rem(v.$article-padding-left-right);
+        text-align: center;
+      }
+
+      article:nth-child(even) {
+        @include article-card($first-color, $third-color, f.rem(16));
+        padding: f.rem(v.$article-padding-top-bottom) f.rem(v.$article-padding-left-right);
+        text-align: center;
+      }
+    }
+
+    &:last-child {
+      article {
+        text-align: center;
+        @include article-card($third-color, $second-color, f.rem(24));
+      }
+    }
+  }
+}
+
+@for $index from 1 to 20 {
+  $bg-color: darken(white, $i * 5%);
+  $text-color: lighten(black, $i * 5%);
+
+  @if $i == 10 {
+    div {
+      section:nth-child(4) {
+        div:nth-child(#{$i}) {
+          background-color: $second-color;
+          color: $first-color;
+        }
+      }
+    }
+  } @else {
+    div {
+      section:nth-child(4) {
+        div:nth-child(#{$i}) {
+          background-color: $bg-color;
+          color: $text-color;
+        }
+      }
+    }
+  }
+}
+
+$numbers: (
+  "1rem": 1rem,
+  "2rem": 2rem,
+  "3rem": 3rem
+);
+
+div {
+  section:nth-child(4) {
+    display: flex;
+    flex-wrap: wrap; 
+
+    @each $key, $value in $numbers {
+      $font-size: $value;
+
+      .fs-#{$key} {
+        flex-grow: 1; 
+        width: f.rem(45);
+        height: f.rem(45);
+        border: f.rem(1) solid $first-color;
+        font-size: $font-size;
+      }
+    }
+  }
+}
