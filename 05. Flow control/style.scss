@@ -56,7 +56,7 @@ div {
   }
 }
 
-@for $index from 1 to 20 {
+@for $i from 1 to 20 {
   $bg-color: darken(white, $i * 5%);
   $text-color: lighten(black, $i * 5%);
 
